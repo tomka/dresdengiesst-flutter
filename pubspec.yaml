@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   webview_flutter: ^4.13.1
+  flutter_native_splash: ^2.4.7
 
 dev_dependencies:
   flutter_test:
@@ -88,3 +89,19 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# Run to regenerate: flutter pub run flutter_native_splash:create
+flutter_native_splash:
+  color: "#ffffff"  # Background color of the splash screen
+  image: assets/images/splash_logo.png  # Path to your logo or splash image
+  android: true  # Enable splash screen for Android
+  ios: true  # Enable splash screen for iOS
+  android_gravity: center  # Position of the image on Android (center, bottom, etc.)
+  ios_content_mode: scaleAspectFit  # Position of the image on iOS (scaleAspectFit, scaleToFill, etc.)
+  fullscreen: true  # Enable full-screen mode (removes the status bar)
+  web: false  # Disable splash screen for web
+
+  #! ANDROID 12+ configuration:
+  android_12:
+    image: assets/images/splash_logo.png
+    icon_background_color: "#ffffff"

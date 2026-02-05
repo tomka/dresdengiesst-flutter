@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'src/web_view_stack.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Dresden gießt',
       theme: ThemeData(useMaterial3: true),
       home: const WebViewApp(),
     );
@@ -38,16 +40,15 @@ class _WebViewAppState extends State<WebViewApp> {
       );
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Dresden gießt"),
-      ),
-      body: WebViewWidget(
-        controller: controller,
-      ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Dresden gießt"),
+        ),
+        body: WebViewStack(controller: controller),
+      )
     );
   }
 }
