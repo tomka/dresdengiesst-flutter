@@ -46,12 +46,25 @@ class _WebViewAppState extends State<WebViewApp> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("Dresden gießt"),
-        ),
-        body: WebViewStack(controller: controller),
+    return Scaffold(
+      //backgroundColor: Colors.white,
+      appBar: AppBar(
+            title: Text("Dresden gießt", style: TextStyle(fontSize: 15)),
+            titleSpacing: 00.0,
+            centerTitle: true,
+            toolbarHeight: 30.2,
+            toolbarOpacity: 0.8,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(25),
+                  bottomLeft: Radius.circular(25)),
+            ),
+            elevation: 0.00,
+            backgroundColor: Colors.white,
+            //foregroundColor: Colors.white,
+          ),
+      body: SafeArea(
+        child: WebViewStack(controller: controller),
       )
     );
   }
