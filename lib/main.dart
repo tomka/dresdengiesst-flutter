@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 import 'src/web_view_stack.dart';
 import 'src/common.dart';
@@ -43,6 +45,25 @@ class _WebViewAppState extends State<WebViewApp> {
     super.initState();
     controller = WebViewController()
       ..loadRequest(homeUrl);
+
+    final platformController = controller.platform;
+    if (platformController is AndroidWebViewController) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        platformController.setGeolocationPermissionsPromptCallbacks(
+          onShowPrompt: (request) async {
+            // request location permission
+            final locationPermissionStatus = await Permission.locationWhenInUse
+                .request();
+
+            // return the response
+            return GeolocationPermissionsResponse(
+              allow: locationPermissionStatus == PermissionStatus.granted,
+              retain: false,
+            );
+          },
+        );
+      });
+    };
   }
 
   @override
